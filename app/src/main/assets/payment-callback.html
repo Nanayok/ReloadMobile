@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Callback Example</title>
+</head>
+
+<body>
+<h1>Payment Callback Example</h1>
+
+<button onclick="simulatePaymentCallback()">Simulate Payment Callback</button>
+
+<script>
+        // Mock implementation of Transaction and flw.Transaction for demonstration purposes
+        const Transaction = {
+            find: async function ({ ref }) {
+                // Mock implementation, replace with actual logic
+                return { amount: 2000 }; // Replace with actual transaction details
+            }
+        };
+
+        const flw = {
+            Transaction: {
+                verify: async function ({ id }) {
+                    // Mock implementation, replace with actual logic
+                    return { data: { status: "successful", amount: 2000, currency: "NGN" } };
+                }
+            }
+        };
+
+        // Function to handle payment callback
+        async function handlePaymentCallback(status, tx_ref, transaction_id) {
+            if (status === 'successful') {
+                try {
+                    // Find transaction details based on the reference (tx_ref)
+                    const transactionDetails = await Transaction.find({ ref: tx_ref });
+
+                    // Verify the transaction using the Flutterwave SDK
+                    const response = await flw.Transaction.verify({ id: transaction_id });
+
+                    // Check if the response indicates a successful transaction
+                    if (
+                        response.data.status === "successful" &&
+                        response.data.amount === transactionDetails.amount &&
+                        response.data.currency === "NGN"
+                    ) {
+                        // Success! Confirm the customer's payment
+                        alert("Payment successful");
+                    } else {
+                        // Inform the customer their payment was unsuccessful
+                        alert("Payment unsuccessful");
+                    }
+                } catch (error) {
+                    // Handle errors appropriately
+                    console.error("Error processing payment:", error);
+                }
+            }
+        }
+
+        // Function to simulate a button click and trigger payment callback
+        function simulatePaymentCallback() {
+            const status = 'successful';
+            const tx_ref = 'example_tx_ref';
+            const transaction_id = 'example_transaction_id';
+
+            handlePaymentCallback(status, tx_ref, transaction_id);
+        }
+    </script>
+</body>
+
+</html>

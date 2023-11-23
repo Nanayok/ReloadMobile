@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPayment"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        tools:ignore="MissingConstraints" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+
+<!--        <com.vinaygaba.creditcardview.CreditCardView-->
+<!--            android:id="@+id/card1"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="225dp"-->
+<!--            android:background="@drawable/cardbackground_plain"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            app:cardNumber=""-->
+<!--            app:cardName=""-->
+<!--            app:cardNumberTextColor="#cccccc"-->
+<!--            app:cardNumberFormat="masked_all_but_last_four"-->
+<!--            app:cardNameTextColor="#cccccc"-->
+<!--            app:type="auto"-->
+
+<!--            app:putChip="true"-->
+<!--            app:expiryDate = ""-->
+<!--            app:expiryDateTextColor="#cccccc"-->
+<!--            app:isEditable="true"-->
+<!--            app:validTillTextColor="#cccccc"-->
+<!--            app:hintTextColor = "#cccccc"-->
+<!--            />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/edittext_cvv"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:drawableLeft="@drawable/baseline_credit_card_24"-->
+<!--            android:drawablePadding="16dp"-->
+<!--            android:hint="CVV"-->
+<!--            android:padding="8dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:background="@color/white"/>-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="@color/underline_color"-->
+<!--            android:layout_marginLeft="47dp"-->
+<!--            />-->
+
+
+
+        <TextView
+            android:id="@+id/textview_product_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Product Description"
+            android:layout_marginTop="20dp"/>
+
+
+                <TextView
+                    android:id="@+id/textview_product_desc_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/underline_color"
+
+            />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/password1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_phone_24"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="5dp"
+                />
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/ccp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="40dp"
+                app:ccp_defaultNameCode="NG"
+                />
+
+
+            <EditText
+                android:id="@+id/edittext_phonenumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:hint="Mobile Number"
+                android:padding="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="80dp"
+                android:background="@color/white"/>
+
+        </RelativeLayout>
+
+                    <EditText
+                        android:id="@+id/edittext_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Amount"
+                        android:inputType="number"
+                        android:textColor="@android:color/black"
+                        android:background="@color/white"                android:textSize="18sp"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"/>
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            >-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView_amount"-->
+<!--                android:layout_width="25dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:src="@drawable/ic_baseline_phone_24"-->
+<!--                android:layout_marginTop="18dp"-->
+<!--                android:layout_marginLeft="5dp"-->
+<!--                />-->
+
+
+<!--            <EditText-->
+<!--                android:id="@+id/edittext_amount"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Enter Amount"-->
+<!--                android:inputType="number"-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:background="@color/white"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:textSize="18sp"-->
+<!--                android:layout_marginLeft="40dp"-->
+<!--                />-->
+
+
+<!--        </RelativeLayout>-->
+
+
+
+
+
+        <!--        <FrameLayout-->
+<!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
+
+
+
+
+<!--            <EditText-->
+<!--                android:id="@+id/edittext_amount"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Amount"-->
+<!--                android:inputType="number"-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:background="@color/white"                android:textSize="18sp"-->
+<!--                android:gravity="center"/>-->
+
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:background="@color/underline_color"-->
+<!--                android:layout_marginLeft="47dp"-->
+<!--                />-->
+
+
+<!--            &lt;!&ndash; Some other stuff &ndash;&gt;-->
+
+<!--            <com.konaire.numerickeyboard.NumericKeyboard-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="bottom"-->
+
+<!--                android:layout_marginTop="30dp"-->
+<!--                app:field="@+id/code"-->
+<!--                app:keyTextColor="@color/black" />-->
+
+
+<!--            </LinearLayout>-->
+
+<!--        </FrameLayout>-->
+        <!--        android:layout_marginBottom="8dp"-->
+
+
+
+        <Button
+            android:id="@+id/button_payment"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/button_background"
+            android:text="Submit"
+            android:textColor="#FFF" />
+
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

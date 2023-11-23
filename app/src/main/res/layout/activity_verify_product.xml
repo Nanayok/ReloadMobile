@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.VerifyProductActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarVerifyProduct"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+
+<!--        <com.vinaygaba.creditcardview.CreditCardView-->
+<!--            android:id="@+id/card1"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="225dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:background="@drawable/cardbackground_plain"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            app:cardNumber=""-->
+<!--            app:cardName=""-->
+<!--            app:cardNumberTextColor="#cccccc"-->
+<!--            app:cardNumberFormat="masked_all_but_last_four"-->
+<!--            app:cardNameTextColor="#cccccc"-->
+<!--            app:type="auto"-->
+
+<!--            app:putChip="true"-->
+<!--            app:expiryDate = ""-->
+<!--            app:expiryDateTextColor="#cccccc"-->
+<!--            app:isEditable="true"-->
+<!--            app:validTillTextColor="#cccccc"-->
+<!--            app:hintTextColor = "#cccccc"-->
+<!--            />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/edittext_cvv"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:drawableLeft="@drawable/baseline_credit_card_24"-->
+<!--            android:drawablePadding="16dp"-->
+<!--            android:hint="CVV"-->
+<!--            android:padding="8dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:background="@color/white"/>-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="@color/underline_color"-->
+<!--            android:layout_marginLeft="47dp"-->
+<!--            />-->
+
+
+        <TextView
+            android:id="@+id/textview_account_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account Name"
+            android:layout_marginTop="20dp"/>
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/textview_account_name_text"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"/>-->
+
+        <Spinner
+            android:id="@+id/spinnerSlugNames"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/underline_color"
+
+            />
+
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Account Number"-->
+<!--            android:layout_marginTop="20dp"/>-->
+
+
+<!--        <EditText-->
+<!--            android:id="@+id/edittext_account_number"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:layout_marginTop="10dp"/>-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="@color/underline_color"-->
+
+<!--            />-->
+
+            <EditText
+                android:id="@+id/edittext_account_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/baseline_account_balance_wallet_24"
+                android:drawablePadding="16dp"
+                android:hint="Account Number"
+                android:padding="8dp"
+                android:layout_marginTop="25dp"
+                android:background="@color/white"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/underline_color"
+                android:layout_marginLeft="47dp"
+                />
+
+        <EditText
+            android:id="@+id/edittext_amount"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="Amount"
+            android:inputType="number"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:background="@color/white"                android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
+
+
+        <!--        <FrameLayout-->
+<!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="32dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/edittext_amount"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:hint="Amount"-->
+<!--                    android:inputType="number"-->
+<!--                    android:textColor="@android:color/black"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:background="@color/white"                android:textSize="18sp"-->
+<!--                    android:gravity="center"/>-->
+
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="@color/underline_color"-->
+<!--                    android:layout_marginLeft="47dp"-->
+<!--                    />-->
+
+
+<!--                &lt;!&ndash; Some other stuff &ndash;&gt;-->
+
+<!--                <com.konaire.numerickeyboard.NumericKeyboard-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="bottom"-->
+
+<!--                    android:layout_marginTop="30dp"-->
+<!--                    app:field="@+id/code"-->
+<!--                    app:keyTextColor="@color/black" />-->
+
+
+<!--            </LinearLayout>-->
+
+<!--        </FrameLayout>-->
+        <!--        android:layout_marginBottom="8dp"-->
+
+
+
+        <Button
+            android:id="@+id/button_payment"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/button_background"
+            android:text="Verify"
+            android:textColor="#FFF" />
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

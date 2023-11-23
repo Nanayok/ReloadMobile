@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".RegisterActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarRegister"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+    android:elevation="4dp"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:src="@drawable/signup_image"
+            android:padding="16dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_color"
+            />
+
+        <EditText
+            android:id="@+id/edittext_fullname_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+            android:drawablePadding="16dp"
+            android:hint="Full Name"
+            android:padding="8dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/underline_color"
+            android:layout_marginLeft="47dp"
+            />
+
+        <EditText
+            android:id="@+id/edittext_email_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_alternate_email_24"
+            android:drawablePadding="16dp"
+            android:hint="Email"
+            android:padding="8dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/white"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/underline_color"
+            android:layout_marginLeft="47dp"
+            />
+
+
+
+
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:drawableLeft="@drawable/ic_baseline_phone_24"-->
+<!--            android:drawablePadding="16dp"-->
+<!--            android:hint="Mobile Number"-->
+<!--            android:padding="8dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:background="@color/white"/>-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="@color/underline_color"-->
+<!--            android:layout_marginLeft="47dp"-->
+<!--            />-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/password1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_phone_24"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="5dp"
+                />
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/ccp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="40dp"
+                app:ccp_defaultNameCode="NG"
+                />
+
+
+            <EditText
+                android:id="@+id/edittext_phonenumber_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:hint="Mobile Number"
+                android:padding="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="80dp"
+                android:background="@color/white"/>
+
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/underline_color"
+            android:layout_marginLeft="47dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/password"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/password"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="5dp"
+                />
+
+
+
+            <EditText
+                android:id="@+id/edittext_password_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:hint="Password"
+                android:padding="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="40dp"
+                android:background="@color/white"
+                android:inputType="textPassword"/>
+
+            <ImageView
+                android:id="@+id/imageViewPasswordVisibility"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_visibility_off_24"
+                android:layout_marginTop="18dp"
+                android:layout_alignParentRight="true"
+
+                />
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/underline_color"
+            android:layout_marginLeft="47dp"
+            />
+
+        <TextView
+            android:id="@+id/textview_privacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="By signing up,you agree to our"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textview_privacy2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terms and Conditions"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="end"
+                android:textColor="@color/text_view_color"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/textview_privacy3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="and"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="end"
+                android:layout_marginLeft="5dp"
+                />
+
+            <TextView
+                android:id="@+id/textview_privacy4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Privacy Policy"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="end"
+                android:textColor="@color/text_view_color"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/signup_continue_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_background"
+            android:text="Continue"
+            android:textColor="#FFF" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Joined us before?"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/textview_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/text_view_color"
+                android:layout_marginLeft="10dp"
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

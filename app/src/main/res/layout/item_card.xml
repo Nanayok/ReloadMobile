@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/card_balance"
+    android:layout_margin="20dp">
+<!--    android:background="#345afb"-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#345afb"-->
+<!--        android:layout_margin="20dp">-->
+
+
+
+
+    <TextView
+        android:id="@+id/textViewCardBalance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Balance"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCardBalance"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/textViewCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$"
+            android:textColor="@color/currency_color"
+            android:textSize="20sp"
+            android:layout_marginLeft="8dp"
+            />
+
+    <TextView
+        android:id="@+id/textViewAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="528"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/relativeLayout"
+        android:text="Card"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="16dp"/>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="#f0f3ff"
+        android:layout_marginBottom="16dp">
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/recyclerview_card_details"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            android:background="@color/black">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="#345afb"/>
+
+            <TextView
+                android:id="@+id/textview_card_currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="USD"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="5dp"
+                />
+
+
+        </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/textview_card_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nana Yaw "
+                android:textSize="18sp"
+                android:textColor="#020203"
+                android:layout_marginLeft="64dp"
+                android:layout_marginTop="5dp"/>
+<!--        android:layout_toRightOf="@id/view"-->
+
+            <TextView
+                android:id="@+id/textview_card_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_card_name"
+                android:text="110123225544"
+                android:textSize="18sp"
+                android:textColor="#838588"
+                android:layout_marginLeft="64dp"/>
+<!--        android:layout_toRightOf="@id/view"-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/textview_card_change"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:text="Change"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textColor="#345afb"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                />-->
+
+
+<!--    </RelativeLayout>-->
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/indicator"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_below="@id/relativeLayout"
+    android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+    android:src="@drawable/ic_indicator_inactive"
+        tools:ignore="ContentDescription"
+        />
+<!--    android:layout_marginTop="32dp"-->
+
+
+</RelativeLayout>

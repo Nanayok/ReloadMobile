@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <style>
+        body {
+            font-size: 14px;
+            font-family: "Moderat", "Inter", sans-serif;
+            font-weight: 400;
+            color: #333;
+        }
+
+        #start-payment-button {
+            cursor: pointer;
+            position: relative;
+            background-color: #ff9b00;
+            color: #12122c;
+            max-width: 30%;
+            padding: 7.5px 16px;
+            font-weight: 500;
+            font-size: 14px;
+            border-radius: 4px;
+            border: none;
+            transition: all .1s ease-in;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+        <div>
+            Your order is NGN <span id="amount">2000</span>
+        </div>
+        
+        
+        <input type="hidden" name="public_key" id="publicKey" value="FLWPUBK_TEST-02b9b5fc6406bd4a41c3ff141cc45e93-X" />
+               <input type="hidden" name="customer[email]" id="customerEmail" value="test@mailnator.com" />
+               <input type="hidden" name="customer[name]" id="customerName" value="Ayomide Jimi-Oni" />
+               <input type="hidden" name="tx_ref" id="txRef" value="txref-81123" />
+               <input type="hidden" name="amount" id="orderAmount" value="2000" />
+               <input type="hidden" name="currency" id="orderCurrency" value="NGN" />
+               <input type="hidden" name="redirect_url" value="file://android_asset/payment-callback.html"/>
+               <input type="hidden" name="meta[source]" id="metaSource" value="docs-html-test" />
+
+        <br>
+        <button type="submit" id="start-payment-button" onclick="sendData()">Pay Now</button>
+    </form>
+
+
+    <script type="text/javascript">
+        var myVar = null;
+
+        function sendData() {
+
+            // Call the Java method
+            myVar = window.AndroidInterface.sendData();
+            var myArray = myVar.split(',');
+
+            // Access individual elements
+            var amount = myArray[0];
+            var email = myArray[1];
+            var name = myArray[2];
+            var currency = myArray[3];
+            
+            document.getElementById('amount').innerText = amount;
+            document.getElementById('customerEmail').value = email;
+                           document.getElementById('customerName').value = name;
+                           document.getElementById('orderAmount').value = amount;
+                           document.getElementById('orderCurrency').value = currency;
+
+
+        }
+
+                // Trigger sendData once the page has loaded
+        window.onload = function () {
+            sendData();
+        };
+    </script>
+
+  
+</body>
+
+</html>

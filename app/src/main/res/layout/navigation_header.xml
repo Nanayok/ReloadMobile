@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Header content -->
+    <ImageView
+        android:id="@+id/image_header"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/header_image"
+        android:padding="16dp"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/profile_name_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="John Doe"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"/>
+
+    <TextView
+        android:id="@+id/profile_email_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="johndoe@example.com"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:paddingLeft="16dp"
+        android:paddingBottom="8dp"/>
+
+
+</LinearLayout>
