@@ -1,6 +1,228 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
+    android:background="@drawable/dashboard_bg"
+    app:ignore="NamespaceTypo">
+
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        />
+
+    <com.daimajia.slider.library.Indicators.PagerIndicator
+        android:id="@+id/custom_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        custom:selected_color="#0095BF"
+        custom:unselected_color="#55333333"
+
+        custom:shape="oval"
+        custom:selected_padding_left="5dp"
+        custom:selected_padding_right="5dp"
+        custom:unselected_padding_left="5dp"
+        custom:unselected_padding_right="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        custom:selected_width="6dp"
+        custom:selected_height="6dp"
+        custom:unselected_width="6dp"
+        custom:unselected_height="6dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+
+        <TextView
+            android:id="@+id/textViewCardBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wallet Balance"
+            android:textColor="@color/text_light"
+            android:textSize="6sp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="5dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewCardBalance"
+            android:orientation="horizontal"
+
+            >
+            <!--            android:layout_marginTop="5dp"-->
+
+            <ImageView
+                android:id="@+id/imageViewNaira"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@drawable/ic_naira"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                />
+
+
+            <TextView
+                android:id="@+id/textViewAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="528"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+<!--        <ImageView-->
+<!--            android:layout_width="10dp"-->
+<!--            android:layout_height="10dp"-->
+<!--            android:src="@drawable/baseline_add_circle_outline_24"-->
+<!--            android:layout_marginTop="2dp"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_marginRight="10dp"/>-->
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_topup"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="2dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:background="@color/purple_500">
+
+            <RelativeLayout
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:background="@color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_add_24"
+                    android:layout_centerHorizontal="true"/>
+
+
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Topup"
+                android:textSize="10dp"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"/>
+
+
+
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/underline_color"
+        android:layout_below="@id/relativeLayout_card"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/textview_top_merchants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top Merchants"
+        android:textSize="8sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/text_dark"
+        android:layout_below="@id/view1"
+        />
+
+    <TextView
+        android:id="@+id/textview_all_merchants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All Merchants"
+        android:textSize="8sp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/view1"
+        android:textColor="@color/text_view_color"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="16dp"
+        />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTopMerchants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview_top_merchants"
+        />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/underline_color"
+        android:layout_below="@id/recyclerViewTopMerchants"
+        />
+
+    <TextView
+        android:id="@+id/textview_last_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recent Transactions"
+        android:textSize="8sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/text_dark"
+        android:layout_below="@id/view2"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/textview_view_all_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View All"
+        android:textSize="8sp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/view2"
+        android:textColor="@color/text_view_color"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="16dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_Transactions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview_last_transaction"
+        />
+
 
 </RelativeLayout>

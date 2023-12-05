@@ -61,8 +61,8 @@ public interface ApiService {
             "merchantKey: 099035353"
     })
 
-    @GET("transaction/mobile/ranking/0")
-    Call<String> getTopMerchants();
+    @GET("transaction/mobile/ranking/{accountNo}")
+    Call<String> getTopMerchants(@Path("accountNo") String accountNo);
 
 
     //Get All Merchants
@@ -141,6 +141,34 @@ public interface ApiService {
 
     @GET("product/24")
     Call<String> getCableTvMerchants();
+
+    //Get Account
+    @Headers({
+            "Content-Type: application/json",
+            "merchantKey: 099035353"
+    })
+
+    @GET("wallettrans/balance/{accountNo}")
+    Call<String> getWalletBalance(@Path("accountNo") String accountNo);
+
+    //Get All Transactions
+    @Headers({
+            "Content-Type: application/json",
+            "merchantKey: 099035353"
+    })
+
+    @GET("transaction/mobile/{accountNo}")
+    Call<String> getAllTransactions(@Path("accountNo") String accountNo);
+
+    //Initialize wallet funding
+    @Headers({
+            "Content-Type: application/json",
+            "merchantKey: 099035353"
+    })
+
+    @POST("wallettrans/data/funding")
+    Call<String> initializeWalletFunding(@Body String body);
+
 
 
 }

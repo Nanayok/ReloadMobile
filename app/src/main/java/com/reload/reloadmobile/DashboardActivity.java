@@ -50,7 +50,7 @@ public class DashboardActivity extends AppCompatActivity {
     private NavigationView navigationView;
     BottomNavigationView bottomNavigationView;
 
-    String topMerchants, electricityMerchants, airtime, cableTv, allAdverts;
+    String topMerchants, electricityMerchants, airtime, cableTv, allAdverts, walletBalance;
     SessionManager session;
 
     GoogleSignInOptions gso;
@@ -124,6 +124,10 @@ public class DashboardActivity extends AppCompatActivity {
 
         allAdverts = intent.getStringExtra("EXTRA_MESSAGE_ALL_ADVERTS");
         System.out.println("Alladverts"+allAdverts);
+
+        walletBalance = intent.getStringExtra("EXTRA_MESSAGE_BALANCE");
+        System.out.println("Alladverts"+walletBalance);
+
 
         navigationView = findViewById(R.id.navigation_drawer);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -269,6 +273,8 @@ public class DashboardActivity extends AppCompatActivity {
     public String getAllAdvertsData() {
         return allAdverts;
     }
+
+    public String getWalletBalance(){return walletBalance;}
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

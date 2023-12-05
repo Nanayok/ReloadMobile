@@ -12,11 +12,11 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/confirm_payment"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="50dp"/>
 
         <TextView
             android:id="@+id/textview_payment_amount"
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="$100.00"
-            android:textSize="50dp"
+            android:textSize="25dp"
             android:textColor="@color/black"
             android:gravity="center"/>
 
@@ -34,7 +34,7 @@
             android:gravity="center"
             android:text="Payment Successful"
             android:layout_marginTop="20dp"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textColor="#159D5F"
             />
 
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Transaction Reference:"
-                android:textSize="16dp"
+                android:textSize="12dp"
                 android:textColor="#A7ACBA"
                 />
 
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="#1282883838"
-                android:textSize="18dp"
+                android:textSize="14dp"
                 android:textColor="#0C132D"
                 />
 
@@ -71,7 +71,7 @@
             android:gravity="center"
             android:layout_marginTop="40dp"
             android:textColor="#0C132D"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:text="A confirmation code will be "/>
 
         <TextView
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="#0C132D"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:text="sent to your email"/>
 
         <TextView
@@ -88,13 +88,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="#A7ACBA"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:text="nyowusukoranteng@gmail.com"/>
 
         <Button
             android:id="@+id/button_download_pdf"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/button_background"
             android:text="Download PDF"
@@ -105,7 +105,7 @@
         <RelativeLayout
             android:id="@+id/relativeLayout_done"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@drawable/button_background_done"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"

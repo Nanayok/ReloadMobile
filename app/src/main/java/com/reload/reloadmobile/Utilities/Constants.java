@@ -26,6 +26,9 @@ public class Constants {
     public static final String KEY_PAYMENT_RESPONSE = "paymentResponse";
     public static final String KEY_CUSTOMER_ID = "customerId";
     public static final String KEY_CUSTOMER_NAME = "customerName";
+    public static final String KEY_FLUTTERWAVE_REF = "paymentRef";
+    public static final String KEY_TRANSACTION_MESSAGE = "message";
+
 
 
 

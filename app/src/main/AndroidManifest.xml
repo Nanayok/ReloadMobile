@@ -25,6 +25,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReloadMobile">
         <activity
+            android:name=".WalletWebViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WalletWebViewMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WalletWebActivity"
+            android:exported="false" />
+        <activity
             android:name=".WebViewActivity"
             android:exported="false" />
         <activity

@@ -47,10 +47,10 @@ import retrofit2.Response;
 
 public class PaymentActivity extends AppCompatActivity {
 
-    String productId, productDescription, personEmail, amount, phoneNumber, personName, accountCvv;
+    String productId, productDescription, personEmail, amount, phoneNumber, personName, accountCvv, customerAccount;
     TextView textViewProductDescription;
     Button buttonPayment;
-    EditText editTextAmount, editTextPhoneNumber, editTextAccountCvv;
+    EditText editTextAmount, editTextAccountNumber, editTextAccountCvv;
 
     SessionManager session;
 
@@ -94,7 +94,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         editTextAmount = findViewById(R.id.edittext_amount);
 
-        editTextPhoneNumber = findViewById(R.id.edittext_phonenumber);
+        editTextAccountNumber = findViewById(R.id.edittext_account_number);
 
         textViewProductDescription = findViewById(R.id.textview_product_desc_text);
         textViewProductDescription.setText(productDescription);
@@ -114,20 +114,25 @@ public class PaymentActivity extends AppCompatActivity {
                 if(acct!=null){
                      personName = acct.getDisplayName();
                      personEmail = acct.getEmail();
+                    customerAccount = editTextAccountNumber.getText().toString().trim();
 
 
-//                    try{
-//                        callPaymentIntent(acct.getEmail(), acct.getDisplayName());
-//                    }catch(JSONException e){
-//                        e.printStackTrace();
-//                    }
+                    try{
+                        callPaymentIntent(acct.getEmail(), acct.getDisplayName());
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
 
-                    Intent intent = new Intent(PaymentActivity.this, WebViewActivity.class);
-                    intent.putExtra("EXTRA_MESSAGE_AMOUNT",amount);
-                    intent.putExtra("EXTRA_MESSAGE_EMAIL",personEmail);
-                    intent.putExtra("EXTRA_MESSAGE_NAME",personName);
-                    intent.putExtra("EXTRA_MESSAGE_CURRENCY","NGN");
-                    startActivity(intent);
+//                    Intent intent = new Intent(PaymentActivity.this, WebViewActivity.class);
+//                    intent.putExtra("EXTRA_MESSAGE_AMOUNT",amount);
+//                    intent.putExtra("EXTRA_MESSAGE_EMAIL",personEmail);
+//                    intent.putExtra("EXTRA_MESSAGE_NAME",personName);
+//                    intent.putExtra("EXTRA_MESSAGE_CURRENCY","NGN");
+//                    intent.putExtra("EXTRA_MESSAGE_PRODUCT_ID",productId);
+//                    intent.putExtra("EXTRA_MESSAGE_PRODUCT_DESC",productDescription);
+//                    intent.putExtra("EXTRA_MESSAGE_CUSTOMER_ACCT",customerAccount);
+//                    startActivity(intent);
+//                    finish();
 
 
                 }else{
@@ -185,18 +190,18 @@ public class PaymentActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
-//                                try{
-//                        callPaymentIntent(account.getEmail(), account.getDisplayName());
-//                    }catch(JSONException e){
-//                        e.printStackTrace();
-//                    }
+                                try{
+                        callPaymentIntent(account.getEmail(), account.getDisplayName());
+                    }catch(JSONException e){
+                        e.printStackTrace();
+                    }
 
-            Intent intent = new Intent(PaymentActivity.this, WebViewActivity.class);
-            intent.putExtra("EXTRA_MESSAGE_AMOUNT",amount);
-            intent.putExtra("EXTRA_MESSAGE_EMAIL",personEmail);
-            intent.putExtra("EXTRA_MESSAGE_NAME",personName);
-            intent.putExtra("EXTRA_MESSAGE_CURRENCY","NGN");
-            startActivity(intent);
+//            Intent intent = new Intent(PaymentActivity.this, WebViewActivity.class);
+//            intent.putExtra("EXTRA_MESSAGE_AMOUNT",amount);
+//            intent.putExtra("EXTRA_MESSAGE_EMAIL",personEmail);
+//            intent.putExtra("EXTRA_MESSAGE_NAME",personName);
+//            intent.putExtra("EXTRA_MESSAGE_CURRENCY","NGN");
+//            startActivity(intent);
 
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -267,23 +272,8 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void callPaymentIntent(String email, String customerName) throws JSONException {
 
-//        System.out.println("Email"+email);
-//        System.out.println("Password"+password);
-
-//        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-//        if(acct!=null){
-//            //String personName = acct.getDisplayName();
-//             email = acct.getEmail();
-//
-//        }
-//        HashMap<String,String> userDetails = session.getUserDetails();
-//        email = userDetails.get(SessionManager.KEY_EMAIL);
-//        fullName = userDetails.get(SessionManager.KEY_FULL_NAME);
-//        System.out.println("FullName"+fullName);
-//        System.out.println("Email"+email);
-
         amount = editTextAmount.getText().toString().trim();
-        phoneNumber = editTextPhoneNumber.getText().toString().trim();
+        customerAccount = editTextAccountNumber.getText().toString().trim();
 
         hud = KProgressHUD.create(this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -305,7 +295,7 @@ public class PaymentActivity extends AppCompatActivity {
             paramObject.put(Constants.KEY_PRODUCT_PAYMENT_METHOD,"billpayflutter");
             paramObject.put(Constants.KEY_PRODUCT_ID_PAYMENT, productId);
             paramObject.put(Constants.KEY_PRODUCT_EMAIL, email);
-            paramObject.put(Constants.KEY_CUSTOMER_ID, phoneNumber);
+            paramObject.put(Constants.KEY_CUSTOMER_ID, customerAccount);
             paramObject.put(Constants.KEY_CUSTOMER_NAME, customerName);
 
             Log.d("Tag_message_body", paramObject.toString());
@@ -340,22 +330,26 @@ public class PaymentActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(responseBody);
 
                             String accountNumber = jsonObject.getJSONObject("account").getString("accountNo");
+                            String transactionRef = jsonObject.getString("transRef");
                             session.createLoginSession(accountNumber);
 
-//                            try{
-//                                finalizePayment(transRef);
-//                            }catch(JSONException e){
-//                                e.printStackTrace();
-//                            }
-
+                                        Intent intent = new Intent(PaymentActivity.this, WebViewActivity.class);
+            intent.putExtra("EXTRA_MESSAGE_AMOUNT",amount);
+            intent.putExtra("EXTRA_MESSAGE_EMAIL",personEmail);
+            intent.putExtra("EXTRA_MESSAGE_NAME",personName);
+            intent.putExtra("EXTRA_MESSAGE_ACCOUNT",accountNumber);
+            intent.putExtra("EXTRA_MESSAGE_TRANS_REF",transactionRef);
+            intent.putExtra("EXTRA_MESSAGE_CURRENCY","NGN");
+            startActivity(intent);
                             finish();
-                           // Toast.makeText(PaymentActivity.this, paymentResponse, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(PaymentActivity.this, PaymentConfirmation.class);
-                            intent.putExtra("EXTRA_TRANSACTION_REF", "bp32311080004376");
-                            intent.putExtra("EXTRA_AMOUNT", amount);
-                            startActivity(intent);
 
-                            Toast.makeText(PaymentActivity.this, "Payment Successful", Toast.LENGTH_LONG).show();
+                           // Toast.makeText(PaymentActivity.this, paymentResponse, Toast.LENGTH_LONG).show();
+//                            Intent intent = new Intent(PaymentActivity.this, PaymentConfirmation.class);
+//                            intent.putExtra("EXTRA_TRANSACTION_REF", "bp32311080004376");
+//                            intent.putExtra("EXTRA_AMOUNT", amount);
+//                            startActivity(intent);
+
+                            //Toast.makeText(PaymentActivity.this, "Payment Successful", Toast.LENGTH_LONG).show();
 
 //                            Intent intent = new Intent(context, PaymentActivity.class);
 //                            context.startActivity(intent);
@@ -389,98 +383,98 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
 
-    private void finalizePayment(String transRef) throws JSONException {
-
-//        HashMap<String,String> userDetails = session.getUserDetails();
-//        email = userDetails.get(SessionManager.KEY_EMAIL);
-//        fullName = userDetails.get(SessionManager.KEY_FULL_NAME);
-//        System.out.println("FullName"+fullName);
-//        System.out.println("Email"+email);
+//    private void finalizePayment(String transRef) throws JSONException {
 //
-//        amount = editTextAmount.getText().toString().trim();
-//        phoneNumber = editTextPhoneNumber.getText().toString().trim();
-
-        hud = KProgressHUD.create(this)
-                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                .setLabel("Please wait")
-                .setDetailsLabel("Loading")
-                .setCancellable(true)
-                .setAnimationSpeed(2)
-                .setDimAmount(0.5f)
-                .show();
-
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
-
-        try {
-            JSONObject paramObject = new JSONObject();
-
-
-            paramObject.put(Constants.KEY_TRANSACTION_REF, transRef);
-
-
-            Log.d("Tag_message_body", paramObject.toString());
-
-            Call<String> userCall = apiService.finalizePayment(paramObject.toString());
-
-            String requestUrl = userCall.request().url().toString();
-            Log.d("Request_URL Finalize Payment", requestUrl);
-
-            // Log the request headers
-            Headers requestHeaders = userCall.request().headers();
-            for (String name : requestHeaders.names()) {
-                Log.d("Request_Header Register", name + ": " + requestHeaders.get(name));
-            }
-
-            userCall.enqueue(new Callback<String>() {
-                @Override
-                public void onResponse(Call<String> call, Response<String> response) {
-
-                    hud.dismiss();
-                    System.out.println("ResponseCode"+response.code());
-
-                    if (response.code() == 200){
-                        //Toast.makeText(MainActivity.this,response.body(), Toast.LENGTH_LONG).show();
-                        Log.d("Tag: Response Finalize Payment", response.toString());
-                        Log.d("Tag: Response Body Finalize Payment", response.body());
-                        System.out.println("Response Body F Payment"+response.body());
-
-                        String responseBody = response.body();
-
-                        try {
-                            JSONObject jsonObject = new JSONObject(responseBody);
-
-                            String paymentResponse = jsonObject.getString(Constants.KEY_PAYMENT_RESPONSE);
-
-                            finish();
-                            Toast.makeText(PaymentActivity.this, paymentResponse, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(PaymentActivity.this, PaymentConfirmation.class);
-                            intent.putExtra("EXTRA_TRANSACTION_REF", transRef);
-                            intent.putExtra("EXTRA_AMOUNT", amount);
-                            startActivity(intent);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-
-                    }else{
-                        Toast.makeText(PaymentActivity.this,"Finalize Payment Failed",Toast.LENGTH_SHORT).show();
-
-                    }
-
-
-
-                }
-
-                @Override
-                public void onFailure(Call<String> call, Throwable t) {
-
-                }
-            });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+////        HashMap<String,String> userDetails = session.getUserDetails();
+////        email = userDetails.get(SessionManager.KEY_EMAIL);
+////        fullName = userDetails.get(SessionManager.KEY_FULL_NAME);
+////        System.out.println("FullName"+fullName);
+////        System.out.println("Email"+email);
+////
+////        amount = editTextAmount.getText().toString().trim();
+////        phoneNumber = editTextPhoneNumber.getText().toString().trim();
+//
+//        hud = KProgressHUD.create(this)
+//                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+//                .setLabel("Please wait")
+//                .setDetailsLabel("Loading")
+//                .setCancellable(true)
+//                .setAnimationSpeed(2)
+//                .setDimAmount(0.5f)
+//                .show();
+//
+//        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+//
+//        try {
+//            JSONObject paramObject = new JSONObject();
+//
+//
+//            paramObject.put(Constants.KEY_TRANSACTION_REF, transRef);
+//
+//
+//            Log.d("Tag_message_body", paramObject.toString());
+//
+//            Call<String> userCall = apiService.finalizePayment(paramObject.toString());
+//
+//            String requestUrl = userCall.request().url().toString();
+//            Log.d("Request_URL Finalize Payment", requestUrl);
+//
+//            // Log the request headers
+//            Headers requestHeaders = userCall.request().headers();
+//            for (String name : requestHeaders.names()) {
+//                Log.d("Request_Header Register", name + ": " + requestHeaders.get(name));
+//            }
+//
+//            userCall.enqueue(new Callback<String>() {
+//                @Override
+//                public void onResponse(Call<String> call, Response<String> response) {
+//
+//                    hud.dismiss();
+//                    System.out.println("ResponseCode"+response.code());
+//
+//                    if (response.code() == 200){
+//                        //Toast.makeText(MainActivity.this,response.body(), Toast.LENGTH_LONG).show();
+//                        Log.d("Tag: Response Finalize Payment", response.toString());
+//                        Log.d("Tag: Response Body Finalize Payment", response.body());
+//                        System.out.println("Response Body F Payment"+response.body());
+//
+//                        String responseBody = response.body();
+//
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(responseBody);
+//
+//                            String paymentResponse = jsonObject.getString(Constants.KEY_PAYMENT_RESPONSE);
+//
+//                            finish();
+//                            Toast.makeText(PaymentActivity.this, paymentResponse, Toast.LENGTH_LONG).show();
+//                            Intent intent = new Intent(PaymentActivity.this, PaymentConfirmation.class);
+//                            intent.putExtra("EXTRA_TRANSACTION_REF", transRef);
+//                            intent.putExtra("EXTRA_AMOUNT", amount);
+//                            startActivity(intent);
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//
+//
+//                    }else{
+//                        Toast.makeText(PaymentActivity.this,"Finalize Payment Failed",Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call<String> call, Throwable t) {
+//
+//                }
+//            });
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }

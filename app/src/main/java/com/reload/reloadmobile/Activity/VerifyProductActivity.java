@@ -33,6 +33,7 @@ import com.reload.reloadmobile.PaymentConfirmation;
 import com.reload.reloadmobile.R;
 import com.reload.reloadmobile.Sessions.SessionManager;
 import com.reload.reloadmobile.Utilities.Constants;
+import com.reload.reloadmobile.WebViewActivity;
 import com.reload.reloadmobile.network.ApiClient;
 import com.reload.reloadmobile.network.ApiService;
 import com.vinaygaba.creditcardview.CreditCardView;
@@ -62,7 +63,7 @@ public class VerifyProductActivity extends AppCompatActivity {
     EditText editTextAccountNumber, editTextAmount, editTextAccountCvv;
     Button buttonPayment;
 
-    String productId, slugData, accountNumber, name, slug, selectedTextSpinnerSlugName, firstWordName, secondWordSlug, productDescription, email,fullname, amount, billerCode, accountCvv;
+    String productId, slugData, accountNumber, personName, slug, selectedTextSpinnerSlugName, firstWordName, secondWordSlug, productDescription, personEmail, amount, billerCode, accountCvv;
     KProgressHUD hud;
 
     private Spinner spinnerSlugNames;
@@ -177,22 +178,22 @@ public class VerifyProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
+                accountNumber = editTextAccountNumber.getText().toString().trim();
                 //if(session.isLoggedIn()){
 
                 GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(VerifyProductActivity.this);
                 if(acct!=null){
-                    String personName = acct.getDisplayName();
-                    String personEmail = acct.getEmail();
+                     personName = acct.getDisplayName();
+                     personEmail = acct.getEmail();
 
-                    String token = acct.getIdToken();
+                    //String token = acct.getIdToken();
                     //System.out.println("token from google"+token);
 
                     Toast.makeText(VerifyProductActivity.this, "Already logged in", Toast.LENGTH_LONG).show();
 
                     try{
                         //callPaymentIntent(acct.getEmail());
-                        verifyAccount(productId, selectedTextSpinnerSlugName, billerCode, accountNumber);
+                        verifyAccount(productId, selectedTextSpinnerSlugName, billerCode, accountNumber, personName, personEmail);
                     }catch(JSONException e){
                         e.printStackTrace();
                     }
@@ -276,7 +277,8 @@ public class VerifyProductActivity extends AppCompatActivity {
 
             try{
                 //callPaymentIntent(acct.getEmail());
-                verifyAccount(productId, selectedTextSpinnerSlugName, billerCode, accountNumber);
+               // verifyAccount(productId, selectedTextSpinnerSlugName, billerCode, accountNumber);
+                verifyAccount(productId, selectedTextSpinnerSlugName, billerCode, accountNumber, personName, personEmail);
             }catch(JSONException e){
                 e.printStackTrace();
             }
@@ -306,10 +308,11 @@ public class VerifyProductActivity extends AppCompatActivity {
     }
 
 
-    private void verifyAccount(String productId, String productName, String billerCode, String acctNumber) throws JSONException {
+    private void verifyAccount(String productId, String productName, String billerCode, String acctNumber, String personName, String personEmail) throws JSONException {
 
 //        System.out.println("Email"+email);
 //        System.out.println("Password"+password);
+        amount = editTextAmount.getText().toString().trim();
 
         hud = KProgressHUD.create(this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -363,11 +366,31 @@ public class VerifyProductActivity extends AppCompatActivity {
 
                         String responseBody = response.body();
 
-                                        try{
-                    callPaymentIntent(acctNumber);
-                }catch(JSONException e){
-                    e.printStackTrace();
-                }
+//                                        try{
+//                    callPaymentIntent(acctNumber);
+//                }catch(JSONException e){
+//                    e.printStackTrace();
+//                }
+
+                        try{
+                            callPaymentIntent(personEmail, personName);
+                        }catch(JSONException e){
+                            e.printStackTrace();
+                        }
+
+
+
+//                        Intent intent = new Intent(VerifyProductActivity.this, WebViewActivity.class);
+//                        intent.putExtra("EXTRA_MESSAGE_AMOUNT",amount);
+//                        intent.putExtra("EXTRA_MESSAGE_EMAIL",personEmail);
+//                        intent.putExtra("EXTRA_MESSAGE_NAME",personName);
+//                        intent.putExtra("EXTRA_MESSAGE_CURRENCY","NGN");
+//                        intent.putExtra("EXTRA_MESSAGE_PRODUCT_ID",productId);
+//                        intent.putExtra("EXTRA_MESSAGE_PRODUCT_DESC",productDescription);
+//                        intent.putExtra("EXTRA_MESSAGE_CUSTOMER_ACCT",accountNumber);
+//                        startActivity(intent);
+
+
 
 //                        try {
 //                            JSONObject jsonObject = new JSONObject(responseBody);
@@ -566,21 +589,233 @@ public class VerifyProductActivity extends AppCompatActivity {
 //    }
 
 
-    private void callPaymentIntent(String acctNumber) throws JSONException {
-
-//        System.out.println("Email"+email);
-//        System.out.println("Password"+password);
-
-//        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-//        if(acct!=null){
-//            //String personName = acct.getDisplayName();
-//             email = acct.getEmail();
+//    private void callPaymentIntent(String acctNumber) throws JSONException {
 //
+////        System.out.println("Email"+email);
+////        System.out.println("Password"+password);
+//
+////        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+////        if(acct!=null){
+////            //String personName = acct.getDisplayName();
+////             email = acct.getEmail();
+////
+////        }
+////        HashMap<String,String> userDetails = session.getUserDetails();
+////        email = userDetails.get(SessionManager.KEY_EMAIL);
+//
+//        amount = editTextAmount.getText().toString().trim();
+//
+//        hud = KProgressHUD.create(this)
+//                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+//                .setLabel("Please wait")
+//                .setDetailsLabel("Loading")
+//                .setCancellable(true)
+//                .setAnimationSpeed(2)
+//                .setDimAmount(0.5f)
+//                .show();
+//
+//        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+//
+//        try {
+//            JSONObject paramObject = new JSONObject();
+//
+////            paramObject.put(Constants.KEY_ACCOUNT_NUMBER,"04171176334");
+////            paramObject.put(Constants.KEY_BILLER_CODE,"EKEDC");
+////            paramObject.put(Constants.KEY_PRODUCT_NAME,"EKEDC_PREPAID");
+////            paramObject.put(Constants.KEY_PRODUCT_ID,"35");
+//
+//            paramObject.put(Constants.KEY_PRODUCT_AMOUNT, amount);
+//            paramObject.put(Constants.KEY_PRODUCT_DESCRIPTION, productDescription);
+//            paramObject.put(Constants.KEY_PRODUCT_PAYMENT_METHOD,"billpayflutter");
+//            paramObject.put(Constants.KEY_PRODUCT_ID, productId);
+//            paramObject.put(Constants.KEY_PRODUCT_EMAIL, personEmail);
+//            paramObject.put(Constants.KEY_CUSTOMER_ID, acctNumber);
+//
+//            Log.d("Tag_message_body", paramObject.toString());
+//
+//            Call<String> userCall = apiService.callPaymentIntent(paramObject.toString());
+//
+//            String requestUrl = userCall.request().url().toString();
+//            Log.d("Request_URL Register", requestUrl);
+//
+//            // Log the request headers
+//            Headers requestHeaders = userCall.request().headers();
+//            for (String name : requestHeaders.names()) {
+//                Log.d("Request_Header Register", name + ": " + requestHeaders.get(name));
+//            }
+//
+//            userCall.enqueue(new Callback<String>() {
+//                @Override
+//                public void onResponse(Call<String> call, Response<String> response) {
+//
+//                    hud.dismiss();
+//                    System.out.println("ResponseCode"+response.code());
+//
+//                    if (response.code() == 200){
+//                        //Toast.makeText(MainActivity.this,response.body(), Toast.LENGTH_LONG).show();
+//                        Log.d("Tag: Response Verify", response.toString());
+//                        Log.d("Tag: Response Body Verify", response.body());
+//                        System.out.println("Response Body Verify"+response.body());
+//
+//                        String responseBody = response.body();
+//
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(responseBody);
+//                            //String transRef = jsonObject.getString(Constants.KEY_TRANSACTION_REF);
+//
+//                            //String error = jsonObject.getString(Constants.KEY_ERROR);
+////                            String message = jsonObject.getString("message");
+////                            JSONObject jobjectUser = jsonObject.getJSONObject("user");
+////                            String id = jobjectUser.getString("id");
+////                            String email = jobjectUser.getString("email");
+////                            String fullname = jobjectUser.getString("fullname");
+////                            String password = jobjectUser.getString("password");
+//
+////                            try{
+////                                finalizePayment(transRef);
+////                            }catch(JSONException e){
+////                                e.printStackTrace();
+////                            }
+//
+//                            finish();
+//                            // Toast.makeText(PaymentActivity.this, paymentResponse, Toast.LENGTH_LONG).show();
+//                            Intent intent = new Intent(VerifyProductActivity.this, PaymentConfirmation.class);
+//                            intent.putExtra("EXTRA_TRANSACTION_REF", "bp32311080004376");
+//                            intent.putExtra("EXTRA_AMOUNT", amount);
+//                            startActivity(intent);
+//
+//                            Toast.makeText(VerifyProductActivity.this, "Payment Successful", Toast.LENGTH_LONG).show();
+//
+////                            Intent intent = new Intent(context, PaymentActivity.class);
+////                            context.startActivity(intent);
+//
+//
+//
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//
+//
+//                    }else{
+//                        Toast.makeText(VerifyProductActivity.this,"Payment Failed",Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call<String> call, Throwable t) {
+//
+//                }
+//            });
+//        } catch (JSONException e) {
+//            e.printStackTrace();
 //        }
-        HashMap<String,String> userDetails = session.getUserDetails();
-        email = userDetails.get(SessionManager.KEY_EMAIL);
+//    }
+
+//    private void finalizePayment(String transRef) throws JSONException {
+//
+////        HashMap<String,String> userDetails = session.getUserDetails();
+////        email = userDetails.get(SessionManager.KEY_EMAIL);
+////        fullName = userDetails.get(SessionManager.KEY_FULL_NAME);
+////        System.out.println("FullName"+fullName);
+////        System.out.println("Email"+email);
+////
+////        amount = editTextAmount.getText().toString().trim();
+////        phoneNumber = editTextPhoneNumber.getText().toString().trim();
+//
+//        hud = KProgressHUD.create(this)
+//                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+//                .setLabel("Please wait")
+//                .setDetailsLabel("Loading")
+//                .setCancellable(true)
+//                .setAnimationSpeed(2)
+//                .setDimAmount(0.5f)
+//                .show();
+//
+//        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+//
+//        try {
+//            JSONObject paramObject = new JSONObject();
+//
+//
+//            paramObject.put(Constants.KEY_TRANSACTION_REF, transRef);
+//
+//
+//            Log.d("Tag_message_body", paramObject.toString());
+//
+//            Call<String> userCall = apiService.finalizePayment(paramObject.toString());
+//
+//            String requestUrl = userCall.request().url().toString();
+//            Log.d("Request_URL Finalize Payment", requestUrl);
+//
+//            // Log the request headers
+//            Headers requestHeaders = userCall.request().headers();
+//            for (String name : requestHeaders.names()) {
+//                Log.d("Request_Header Register", name + ": " + requestHeaders.get(name));
+//            }
+//
+//            userCall.enqueue(new Callback<String>() {
+//                @Override
+//                public void onResponse(Call<String> call, Response<String> response) {
+//
+//                    hud.dismiss();
+//                    System.out.println("ResponseCode"+response.code());
+//
+//                    if (response.code() == 200){
+//                        //Toast.makeText(MainActivity.this,response.body(), Toast.LENGTH_LONG).show();
+//                        Log.d("Tag: Response Finalize Payment", response.toString());
+//                        Log.d("Tag: Response Body Finalize Payment", response.body());
+//                        System.out.println("Response Body F Payment"+response.body());
+//
+//                        String responseBody = response.body();
+//
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(responseBody);
+//
+//                            String paymentResponse = jsonObject.getString(Constants.KEY_PAYMENT_RESPONSE);
+//
+//                            finish();
+//                            Toast.makeText(VerifyProductActivity.this, paymentResponse, Toast.LENGTH_LONG).show();
+//                            Intent intent = new Intent(VerifyProductActivity.this, PaymentConfirmation.class);
+//                            intent.putExtra("EXTRA_TRANSACTION_REF", transRef);
+//                            intent.putExtra("EXTRA_AMOUNT", amount);
+//                            startActivity(intent);
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//
+//
+//                    }else{
+//                        Toast.makeText(VerifyProductActivity.this,"Finalize Payment Failed",Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call<String> call, Throwable t) {
+//
+//                }
+//            });
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    private void callPaymentIntent(String email, String customerName) throws JSONException {
 
         amount = editTextAmount.getText().toString().trim();
+        //phoneNumber = edittext_account_number.getText().toString().trim();
+        accountNumber = editTextAccountNumber.getText().toString().trim();
 
         hud = KProgressHUD.create(this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -596,24 +831,21 @@ public class VerifyProductActivity extends AppCompatActivity {
         try {
             JSONObject paramObject = new JSONObject();
 
-//            paramObject.put(Constants.KEY_ACCOUNT_NUMBER,"04171176334");
-//            paramObject.put(Constants.KEY_BILLER_CODE,"EKEDC");
-//            paramObject.put(Constants.KEY_PRODUCT_NAME,"EKEDC_PREPAID");
-//            paramObject.put(Constants.KEY_PRODUCT_ID,"35");
 
             paramObject.put(Constants.KEY_PRODUCT_AMOUNT, amount);
             paramObject.put(Constants.KEY_PRODUCT_DESCRIPTION, productDescription);
             paramObject.put(Constants.KEY_PRODUCT_PAYMENT_METHOD,"billpayflutter");
-            paramObject.put(Constants.KEY_PRODUCT_ID, productId);
+            paramObject.put(Constants.KEY_PRODUCT_ID_PAYMENT, productId);
             paramObject.put(Constants.KEY_PRODUCT_EMAIL, email);
-            paramObject.put(Constants.KEY_CUSTOMER_ID, acctNumber);
+            paramObject.put(Constants.KEY_CUSTOMER_ID, accountNumber);
+            paramObject.put(Constants.KEY_CUSTOMER_NAME, customerName);
 
             Log.d("Tag_message_body", paramObject.toString());
 
             Call<String> userCall = apiService.callPaymentIntent(paramObject.toString());
 
             String requestUrl = userCall.request().url().toString();
-            Log.d("Request_URL Register", requestUrl);
+            Log.d("Request_URL Payment", requestUrl);
 
             // Log the request headers
             Headers requestHeaders = userCall.request().headers();
@@ -630,38 +862,36 @@ public class VerifyProductActivity extends AppCompatActivity {
 
                     if (response.code() == 200){
                         //Toast.makeText(MainActivity.this,response.body(), Toast.LENGTH_LONG).show();
-                        Log.d("Tag: Response Verify", response.toString());
-                        Log.d("Tag: Response Body Verify", response.body());
-                        System.out.println("Response Body Verify"+response.body());
+                        Log.d("Tag: Response Payment", response.toString());
+                        Log.d("Tag: Response Body Payment", response.body());
+                        System.out.println("Response Body Payment"+response.body());
 
                         String responseBody = response.body();
 
                         try {
                             JSONObject jsonObject = new JSONObject(responseBody);
-                            //String transRef = jsonObject.getString(Constants.KEY_TRANSACTION_REF);
 
-                            //String error = jsonObject.getString(Constants.KEY_ERROR);
-//                            String message = jsonObject.getString("message");
-//                            JSONObject jobjectUser = jsonObject.getJSONObject("user");
-//                            String id = jobjectUser.getString("id");
-//                            String email = jobjectUser.getString("email");
-//                            String fullname = jobjectUser.getString("fullname");
-//                            String password = jobjectUser.getString("password");
+                            String accountNumber = jsonObject.getJSONObject("account").getString("accountNo");
+                            String transactionRef = jsonObject.getString("transRef");
+                            session.createLoginSession(accountNumber);
 
-//                            try{
-//                                finalizePayment(transRef);
-//                            }catch(JSONException e){
-//                                e.printStackTrace();
-//                            }
-
-                            finish();
-                            // Toast.makeText(PaymentActivity.this, paymentResponse, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(VerifyProductActivity.this, PaymentConfirmation.class);
-                            intent.putExtra("EXTRA_TRANSACTION_REF", "bp32311080004376");
-                            intent.putExtra("EXTRA_AMOUNT", amount);
+                            Intent intent = new Intent(VerifyProductActivity.this, WebViewActivity.class);
+                            intent.putExtra("EXTRA_MESSAGE_AMOUNT",amount);
+                            intent.putExtra("EXTRA_MESSAGE_EMAIL",personEmail);
+                            intent.putExtra("EXTRA_MESSAGE_NAME",personName);
+                            intent.putExtra("EXTRA_MESSAGE_ACCOUNT",accountNumber);
+                            intent.putExtra("EXTRA_MESSAGE_TRANS_REF",transactionRef);
+                            intent.putExtra("EXTRA_MESSAGE_CURRENCY","NGN");
                             startActivity(intent);
+                            finish();
 
-                            Toast.makeText(VerifyProductActivity.this, "Payment Successful", Toast.LENGTH_LONG).show();
+                            // Toast.makeText(PaymentActivity.this, paymentResponse, Toast.LENGTH_LONG).show();
+//                            Intent intent = new Intent(PaymentActivity.this, PaymentConfirmation.class);
+//                            intent.putExtra("EXTRA_TRANSACTION_REF", "bp32311080004376");
+//                            intent.putExtra("EXTRA_AMOUNT", amount);
+//                            startActivity(intent);
+
+                            //Toast.makeText(PaymentActivity.this, "Payment Successful", Toast.LENGTH_LONG).show();
 
 //                            Intent intent = new Intent(context, PaymentActivity.class);
 //                            context.startActivity(intent);
@@ -693,101 +923,6 @@ public class VerifyProductActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-    private void finalizePayment(String transRef) throws JSONException {
-
-//        HashMap<String,String> userDetails = session.getUserDetails();
-//        email = userDetails.get(SessionManager.KEY_EMAIL);
-//        fullName = userDetails.get(SessionManager.KEY_FULL_NAME);
-//        System.out.println("FullName"+fullName);
-//        System.out.println("Email"+email);
-//
-//        amount = editTextAmount.getText().toString().trim();
-//        phoneNumber = editTextPhoneNumber.getText().toString().trim();
-
-        hud = KProgressHUD.create(this)
-                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                .setLabel("Please wait")
-                .setDetailsLabel("Loading")
-                .setCancellable(true)
-                .setAnimationSpeed(2)
-                .setDimAmount(0.5f)
-                .show();
-
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
-
-        try {
-            JSONObject paramObject = new JSONObject();
-
-
-            paramObject.put(Constants.KEY_TRANSACTION_REF, transRef);
-
-
-            Log.d("Tag_message_body", paramObject.toString());
-
-            Call<String> userCall = apiService.finalizePayment(paramObject.toString());
-
-            String requestUrl = userCall.request().url().toString();
-            Log.d("Request_URL Finalize Payment", requestUrl);
-
-            // Log the request headers
-            Headers requestHeaders = userCall.request().headers();
-            for (String name : requestHeaders.names()) {
-                Log.d("Request_Header Register", name + ": " + requestHeaders.get(name));
-            }
-
-            userCall.enqueue(new Callback<String>() {
-                @Override
-                public void onResponse(Call<String> call, Response<String> response) {
-
-                    hud.dismiss();
-                    System.out.println("ResponseCode"+response.code());
-
-                    if (response.code() == 200){
-                        //Toast.makeText(MainActivity.this,response.body(), Toast.LENGTH_LONG).show();
-                        Log.d("Tag: Response Finalize Payment", response.toString());
-                        Log.d("Tag: Response Body Finalize Payment", response.body());
-                        System.out.println("Response Body F Payment"+response.body());
-
-                        String responseBody = response.body();
-
-                        try {
-                            JSONObject jsonObject = new JSONObject(responseBody);
-
-                            String paymentResponse = jsonObject.getString(Constants.KEY_PAYMENT_RESPONSE);
-
-                            finish();
-                            Toast.makeText(VerifyProductActivity.this, paymentResponse, Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(VerifyProductActivity.this, PaymentConfirmation.class);
-                            intent.putExtra("EXTRA_TRANSACTION_REF", transRef);
-                            intent.putExtra("EXTRA_AMOUNT", amount);
-                            startActivity(intent);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-
-                    }else{
-                        Toast.makeText(VerifyProductActivity.this,"Finalize Payment Failed",Toast.LENGTH_SHORT).show();
-
-                    }
-
-
-
-                }
-
-                @Override
-                public void onFailure(Call<String> call, Throwable t) {
-
-                }
-            });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
 
 
 }

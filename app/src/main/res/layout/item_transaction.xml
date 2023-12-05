@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="30dp"-->
+<!--    android:layout_marginLeft="8dp"-->
+<!--    android:layout_marginRight="8dp"-->
+<!--    android:layout_marginTop="0.1dp">-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:orientation="vertical"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+>
+
+
+    <RelativeLayout
+        android:id="@+id/linearlayout_top_merchant_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_marginTop="0.5dp">
+
+
+
+        <ImageView
+            android:id="@+id/imageView_top_merchant"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/electricity_image"
+            android:layout_marginTop="5dp"
+
+            />
+
+        <TextView
+            android:id="@+id/textview_top_merchant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="com.reload.reloadmobile.Electricity"
+            android:textSize="6sp"
+            android:textColor="@color/text_dark"
+            android:layout_toRightOf="@+id/imageView_top_merchant"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="5dp"
+            />
+<!--        android:layout_gravity="center"-->
+
+        <TextView
+            android:id="@+id/textview_top_merchant2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Electricity"
+            android:textSize="6sp"
+            android:textColor="@color/text_light"
+            android:layout_toRightOf="@+id/imageView_top_merchant"
+            android:layout_marginLeft="4dp"
+            android:layout_below="@+id/textview_top_merchant_name"
+            />
+
+        <ImageView
+            android:id="@+id/imageViewNaira"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:src="@drawable/ic_naira"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="6dp"
+            android:layout_toLeftOf="@+id/textview_trans_amount"
+            />
+
+        <TextView
+            android:id="@+id/textview_trans_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20.00"
+            android:textSize="6sp"
+            android:textColor="@android:color/black"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="5dp"
+            />
+
+
+
+        <!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0.1dp"-->
+<!--            android:background="@color/underline_color"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:layout_below="@+id/textview_top_merchant_name"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            />-->
+
+
+
+
+</RelativeLayout>
+
+
+
+</LinearLayout>
+
+
+<!--</androidx.cardview.widget.CardView>-->

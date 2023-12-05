@@ -120,7 +120,7 @@ public class AllMerchantsActivity extends AppCompatActivity {
 //        recyclerViewAllMerchants.setAdapter(productAdapter);
 
         productAdapter = new ProductAdapter(this, productItems);
-        recyclerViewAllMerchants.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerViewAllMerchants.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerViewAllMerchants.setAdapter(productAdapter);
 
 //        recyclerView = (RecyclerView)findViewById(R.id.card_recycler_view);

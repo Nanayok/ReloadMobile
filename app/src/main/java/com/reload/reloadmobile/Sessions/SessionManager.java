@@ -121,14 +121,14 @@ public class SessionManager {
         //user.put(KEY_NAME, pref.getString(KEY_NAME, null));
 
         // user email id
-        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+        user.put(Constants.KEY_CUSTOMER_ID, pref.getString(Constants.KEY_CUSTOMER_ID, null));
 
         // user password id
         //user.put(KEY_PASSWORD, pref.getString(KEY_PASSWORD, null));
 
 //        user.put(KEY_FIRST_NAME, pref.getString(KEY_FIRST_NAME, null));
 //        user.put(KEY_LAST_NAME, pref.getString(KEY_LAST_NAME, null));
-        user.put(KEY_FULL_NAME, pref.getString(KEY_FULL_NAME, null));
+//        user.put(KEY_FULL_NAME, pref.getString(KEY_FULL_NAME, null));
 //        user.put(KEY_POSTAL_ADDRESS, pref.getString(KEY_POSTAL_ADDRESS, null));
 //        user.put(KEY_RESIDENTIAL_ADDRESS, pref.getString(KEY_RESIDENTIAL_ADDRESS, null));
 //        user.put(KEY_OCCUPATION, pref.getString(KEY_OCCUPATION, null));

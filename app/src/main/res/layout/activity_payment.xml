@@ -89,45 +89,57 @@
             />
 
 
-        <RelativeLayout
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            >-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/password1"-->
+<!--                android:layout_width="25dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:src="@drawable/ic_baseline_phone_24"-->
+<!--                android:layout_marginTop="18dp"-->
+<!--                android:layout_marginLeft="5dp"-->
+<!--                />-->
+
+<!--            <com.hbb20.CountryCodePicker-->
+<!--                android:id="@+id/ccp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginLeft="40dp"-->
+<!--                app:ccp_defaultNameCode="NG"-->
+<!--                />-->
+
+
+<!--            <EditText-->
+<!--                android:id="@+id/edittext_phonenumber"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:drawablePadding="16dp"-->
+<!--                android:hint="Mobile Number"-->
+<!--                android:padding="8dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginLeft="80dp"-->
+<!--                android:background="@color/white"/>-->
+
+<!--        </RelativeLayout>-->
+
+        <EditText
+            android:id="@+id/edittext_account_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
-
-            <ImageView
-                android:id="@+id/password1"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_baseline_phone_24"
-                android:layout_marginTop="18dp"
-                android:layout_marginLeft="5dp"
-                />
-
-            <com.hbb20.CountryCodePicker
-                android:id="@+id/ccp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="40dp"
-                app:ccp_defaultNameCode="NG"
-                />
+            android:drawableLeft="@drawable/baseline_account_balance_wallet_24"
+            android:drawablePadding="16dp"
+            android:hint="Account Number"
+            android:padding="8dp"
+            android:layout_marginTop="25dp"
+            android:background="@color/white"/>
 
 
-            <EditText
-                android:id="@+id/edittext_phonenumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="16dp"
-                android:hint="Mobile Number"
-                android:padding="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="80dp"
-                android:background="@color/white"/>
-
-        </RelativeLayout>
-
-                    <EditText
+        <EditText
                         android:id="@+id/edittext_amount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
